@@ -11,5 +11,6 @@ export function getJWT() {
     // GitHub App's identifier
     iss: env.app_id,
   };
-  return sign(payload, env.private_key, { algorithm: 'RS256' });
+  const private_key = env.private_key.replace(/\\n/g, '\n');
+  return sign(payload, private_key, { algorithm: 'RS256' });
 }
